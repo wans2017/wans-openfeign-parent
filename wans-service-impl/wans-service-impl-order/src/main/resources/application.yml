@@ -1,0 +1,11 @@
+server:
+  port: 8083  ### 服务生产者808X
+spring:
+  application:
+    ### 服务名称
+    name: wans-order
+  cloud:
+    nacos:
+      discovery:
+        ### nacos注册地址
+        server-addr: 127.0.0.1:8848

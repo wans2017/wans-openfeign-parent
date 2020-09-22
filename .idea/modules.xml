@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/wans-openfeign-parent.iml" filepath="$PROJECT_DIR$/wans-openfeign-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wans-service-api/wans-service-api.iml" filepath="$PROJECT_DIR$/wans-service-api/wans-service-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wans-service-api/wans-service-api-member/wans-service-api-member.iml" filepath="$PROJECT_DIR$/wans-service-api/wans-service-api-member/wans-service-api-member.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wans-service-api/wans-service-api-order/wans-service-api-order.iml" filepath="$PROJECT_DIR$/wans-service-api/wans-service-api-order/wans-service-api-order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wans-service-impl/wans-service-impl.iml" filepath="$PROJECT_DIR$/wans-service-impl/wans-service-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wans-service-impl/wans-service-impl-member/wans-service-impl-member.iml" filepath="$PROJECT_DIR$/wans-service-impl/wans-service-impl-member/wans-service-impl-member.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wans-service-impl/wans-service-impl-order/wans-service-impl-order.iml" filepath="$PROJECT_DIR$/wans-service-impl/wans-service-impl-order/wans-service-impl-order.iml" />
+    </modules>
+  </component>
+</project>
