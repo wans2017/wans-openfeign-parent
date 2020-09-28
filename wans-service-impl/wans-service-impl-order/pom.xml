@@ -11,5 +11,23 @@
 
     <artifactId>wans-service-impl-order</artifactId>
 
+    <dependencies>
+        <!--sentinel限流 支持-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-sentinel</artifactId>
+            <version>0.2.2.RELEASE</version>
+        </dependency>
+        <!--actuator健康监控 支持-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--lombok支持-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -15,7 +15,7 @@ public interface MemberServiceFeign {
      * 提供用户查询接口
      * 注意：openfeign必须加 @RequestMapping/@RequestParam/@PathVariable/@RequestHeader
      * @param userId
-     * @return
+     * @return  123
      */
     @GetMapping("/getUser")
     String getUser(@RequestParam(value = "userId", required = false) Integer userId);
