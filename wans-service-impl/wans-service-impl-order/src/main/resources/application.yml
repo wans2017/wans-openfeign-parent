@@ -9,3 +9,21 @@ spring:
       discovery:
         ### nacos注册地址
         server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8720 ### sentinel注册地址
+      ### 默认Sentinel会在客户端首次调用进行初始化，开始向控制台发送心跳包，配置sentinel.eager=true ,取消控制台懒加载
+      eager: true
+      datasource:
+        ds:
+          nacos:
+            ## nacos连接地址
+            server-addr: localhost:8848
+            ## nacos连接的分组
+            group-id: DEFAULT_GROUP
+            ## 路由存储规则
+            rule-type: flow
+            ## 读取配置文件的 data-id
+            data-id: wans-order-sentinel.json
+            ## 读取培训文件类型为json
+            data-type: json

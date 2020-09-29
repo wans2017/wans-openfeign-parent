@@ -16,7 +16,7 @@ import java.util.List;
  * ApplicationRunner接口(或CommandLineRunner)，springboot启动时执行
  * Created by admin on 2020/9/28.
  */
-@Component
+//@Component
 @Slf4j
 public class SentinelApplicationRunner implements ApplicationRunner {
     private static final String GETORDER_KEY = "orderToMember";  // 限流规则名称

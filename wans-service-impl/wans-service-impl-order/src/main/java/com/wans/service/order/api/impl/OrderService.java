@@ -2,10 +2,13 @@ package com.wans.service.order.api.impl;
 
 import com.alibaba.csp.sentinel.Entry;
 import com.alibaba.csp.sentinel.SphU;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 import com.wans.service.order.api.openfeign.MemberServiceFeign;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +21,7 @@ import java.util.List;
  * Created by wans on 2020/7/8.
  */
 @RestController
+@Slf4j
 public class OrderService {
     @Autowired  // 注入会员的openfeign客户端
     private MemberServiceFeign memberServiceFeign;
@@ -72,4 +76,51 @@ public class OrderService {
             }
         }
     }
+
+    /*
+    @SentinelResource 注解方式定义 限流规则
+    value 限流规则名称；和启动配置类SentinelApplicationRunner的名称相同
+    blockHandler 限流/熔断出现异常所执行方法；
+    fallback 服务降级执行方法名；
+    限流，熔断，接口超时，接口出现异常 导致服务降级方法执行；但是为了明确是那种异常，最好分开定义；
+    所以有了参数 blockHandler 限流/熔断出现异常所执行方法
+     */
+    @SentinelResource(value = GETORDER_KEY,
+            blockHandler = "getOrderQpsException")
+    // fallback = "orderToMemberAnnotation"
+    @GetMapping("/orderToMemberAnnotation")
+    public String orderToMemberAnnotation() {
+        return "orderToMemberAnnotation接口方法";
+    }
+    /*
+    BlockException 只在blockHandler对应方法里才有
+     */
+    public String getOrderQpsException(BlockException e) {
+        e.printStackTrace();
+        return "orderToMemberAnnotation接口已经被降级啦!";
+    }
+
+    /*
+    sentinel控制台对此接口进行限流
+    注：没有使用@SentinelResource设置流量规则名称
+    默认 流量规则名称为接口路径地址，这里为：/getOrderCon
+     */
+    @SentinelResource(value = "getOrderCon",
+            blockHandler = "getOrderQpsException")
+    @GetMapping("/getOrderCon")
+    public String getOrderConsole() {
+        return "getOrderConsole接口服务";
+    }
+
+    @SentinelResource(value = "getOrderSig",
+            blockHandler = "getOrderQpsException")
+    @GetMapping("/getOrderSig")
+    public String getOrderSignal() {
+        log.info("====="+Thread.currentThread().getName());
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) { }
+        return "getOrderSignal接口服务";
+    }
+
 }
